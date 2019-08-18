@@ -4,12 +4,3 @@
 .page {
     display: table-caption;
 }
-.line {
-    width: 10px;
-    height: 10px;
-    float: left;
-    background-color: black;
-}
-.line:hover {
-    background-color: red;
-}
