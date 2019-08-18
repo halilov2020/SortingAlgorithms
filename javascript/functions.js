@@ -27,13 +27,13 @@ function setTimeoutPromise(callback, offset){
 }
 
 function renderFrame(){
-    return setTimeoutPromise(drawLines, 100)
+    return setTimeoutPromise(drawLines, 30)
 }
 
 async function bubbleSort(){
     // algorithm of sorting lines
     for (let b = 0; b < heights.length; b++) {
-        for (let i = 0; i < heights.length; i++) {
+        for (let i = 0; i < heights.length - b; i++) {
             if (heights[i] > heights[i + 1]) {
                 let a = heights[i];
                 heights[i] = heights[i + 1];

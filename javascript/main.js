@@ -15,8 +15,8 @@ drawLines();
 
 let btn = document.querySelector('.btn');
 btn.addEventListener('click', () => {
-    let a = document.querySelector('.list').value;
-    switch (a){
+    let value = document.querySelector('.list').value;
+    switch (value){
         case 'shuffle':
             shuffleLines();
             drawLines();
