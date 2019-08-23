@@ -26,5 +26,8 @@ btn.addEventListener('click', () => {
             bubbleSort();
             break;
         
+        case 'insertion-sort':
+            insSort();
+            break;
     }
 });

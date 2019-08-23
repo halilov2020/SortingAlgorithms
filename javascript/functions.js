@@ -26,12 +26,12 @@ function setTimeoutPromise(callback, offset){
     return prom
 }
 
-function renderFrame(){
-    return setTimeoutPromise(drawLines, 30)
+function renderFrame(ms){
+    return setTimeoutPromise(drawLines, ms);
 }
 
 async function bubbleSort(){
-    // algorithm of sorting lines
+    // bubble sort algorithm
     for (let b = 0; b < heights.length; b++) {
         for (let i = 0; i < heights.length - b; i++) {
             if (heights[i] > heights[i + 1]) {
@@ -39,8 +39,25 @@ async function bubbleSort(){
                 heights[i] = heights[i + 1];
                 heights[i + 1] = a;
             }
+            var ms = i;
         }
-        await renderFrame()
+        await renderFrame(ms)
     }
 }
 
+async function insSort(){
+    // insertion sort algorithm
+    for (let b = 0; b < heights.length; b++){
+        let a = b;
+        while (a != 0){
+            if (heights[a] < heights[a - 1]){
+                let t = heights[a];
+                heights[a] = heights[a - 1];
+                heights[a - 1] = t;
+            } else break
+            a--;
+        }
+        var ms = a*2;
+        await renderFrame(ms);
+    }
+}
