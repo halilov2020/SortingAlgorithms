@@ -79,7 +79,7 @@ async function bubbleSort(){
 
 async function insSort(){
     // insertion sort algorithm
-    for (let b = 0; b < heights.length; b++){
+    for (let b = 0; b < heights.length; b++){ 
         let a = b;
         await renderAnimation(5, b, "blue");
         while (a != 0){
@@ -95,4 +95,38 @@ async function insSort(){
         await renderAnimation(5, a, "green");
     }
     await renderFrame(30);
+}
+
+async function SelectionSort(){
+    //selection sort algorithm
+    let aux = [];
+    while (heights.length != 0){
+        aux.push(minim(heights));
+        cut(heights, minim(heights));
+        heights
+        await renderFrame(30);
+        }
+    heights = aux;
+    drawLines();
+}
+
+function minim(arr){
+    //find a minimum value of an array
+    let t = arr[0];
+    for(let i = 0; i < arr.length; i++){
+        if( t > arr[i+1] ){ t = arr[i+1] }
+    }
+    return t;
+}
+
+function cut(arr, el){
+    //cut an element by his value from the array
+    let v;
+    for(let i = 0; i < arr.length; i++){
+        if (arr[i] === el){
+            v = arr[i];
+           arr.splice(i, 1);
+        }
+    }
+    return v;
 }

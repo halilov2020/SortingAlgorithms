@@ -29,5 +29,12 @@ btn.addEventListener('click', () => {
         case 'insertion-sort':
             insSort();
             break;
+
+        case 'selection-sort':
+            SelectionSort();
+            break;
+        case 'merge-sort':
+            MergeSort(heights);
+            break;
     }
 });
