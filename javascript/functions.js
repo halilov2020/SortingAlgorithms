@@ -71,8 +71,6 @@ async function bubbleSort(){
                 await renderAnimation(5, i-1, "green")
             } else { await renderAnimation(2, i-1) }
             var ms = i;
-            
-            
         }
     }
 }
@@ -97,36 +95,28 @@ async function insSort(){
     await renderFrame(30);
 }
 
+
+
 async function SelectionSort(){
-    //selection sort algorithm
-    let aux = [];
-    while (heights.length != 0){
-        aux.push(minim(heights));
-        cut(heights, minim(heights));
-        heights
-        await renderFrame(30);
+    for(let i = 0; i<heights.length; i++){
+        let k = i;
+        for(let j = i+1; j<=heights.length; j++){
+            if(heights[k]>heights[j]){
+                k = j;
+            }
         }
-    heights = aux;
-    drawLines();
-}
-
-function minim(arr){
-    //find a minimum value of an array
-    let t = arr[0];
-    for(let i = 0; i < arr.length; i++){
-        if( t > arr[i+1] ){ t = arr[i+1] }
-    }
-    return t;
-}
-
-function cut(arr, el){
-    //cut an element by his value from the array
-    let v;
-    for(let i = 0; i < arr.length; i++){
-        if (arr[i] === el){
-            v = arr[i];
-           arr.splice(i, 1);
+        if(k!=i){
+            let aux = heights[i];
+            await renderFrame(10);
+            await renderAnimation(10, k, "yellow");
+            heights[i] = heights[k];
+            await renderFrame(10);
+            await renderAnimation(10, i, "green");
+            heights[k] = aux;
+            await renderFrame(10);
+            await renderAnimation(10, k, "blue");
+            
         }
+        await renderFrame(10);
     }
-    return v;
 }
