@@ -43,12 +43,12 @@ function setTimeoutAnimation(callback, offset, i, color="red"){
     return prom;
 }
 
-function renderFrame(ms){
-    return setTimeoutPromise(drawLines, ms);
+function renderFrame(){
+    return setTimeoutPromise(drawLines, delay);
 }
 
-function renderAnimation(ms, i, color){
-    return setTimeoutAnimation(drawAnimation, ms, i, color)
+function renderAnimation(i, color){
+    return setTimeoutAnimation(drawAnimation, delay, i, color)
 }
 
 function finishAnimation(color){
@@ -62,15 +62,14 @@ async function bubbleSort(){
     // bubble sort algorithm
     for (let b = 0; b < heights.length; b++) {
         for (let i = 0; i < heights.length - b; i++) {
-            await renderFrame(5)
-            await renderAnimation(5, i, "blue")
+            await renderFrame()
+            await renderAnimation(i, "blue")
             if (heights[i] > heights[i + 1]) {
                 let a = heights[i];
                 heights[i] = heights[i + 1];
                 heights[i + 1] = a;
-                await renderAnimation(5, i-1, "green")
-            } else { await renderAnimation(2, i-1) }
-            var ms = i;
+                await renderAnimation(i-1, "green")
+            } else { await renderAnimation(i-1) }
         }
     }
 }
@@ -79,7 +78,7 @@ async function insSort(){
     // insertion sort algorithm
     for (let b = 0; b < heights.length; b++){ 
         let a = b;
-        await renderAnimation(5, b, "blue");
+        await renderAnimation(b, "blue");
         while (a != 0){
             if (heights[a] < heights[a - 1]){
                 let t = heights[a];
@@ -88,11 +87,10 @@ async function insSort(){
             } else break
             a--;
         }
-        var ms = a*2;
-        await renderFrame(ms);
-        await renderAnimation(5, a, "green");
+        await renderFrame();
+        await renderAnimation(a, "green");
     }
-    await renderFrame(30);
+    await renderFrame();
 }
 
 
@@ -107,16 +105,16 @@ async function SelectionSort(){
         }
         if(k!=i){
             let aux = heights[i];
-            await renderFrame(10);
-            await renderAnimation(10, k, "yellow");
+            await renderFrame();
+            await renderAnimation(k, "yellow");
             heights[i] = heights[k];
-            await renderFrame(10);
-            await renderAnimation(10, i, "green");
+            await renderFrame();
+            await renderAnimation(i, "green");
             heights[k] = aux;
-            await renderFrame(10);
-            await renderAnimation(10, k, "blue");
+            await renderFrame();
+            await renderAnimation(k, "blue");
             
         }
-        await renderFrame(10);
+        await renderFrame();
     }
 }
